@@ -1,23 +1,22 @@
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './../styles/App.css';
-
-const weather = {
-  temp: 25,
-  conditions: "Sunny",
-};
+import WeatherDisplay from "./WeatherDisplay";
 
 const App = () => {
-  return (
-    <>
-      <p>
-        <span style={weather.temp > 20 ? { color: "red" } : null}>
-          {weather.temp}
-        </span>
-      </p>
-      <p>{weather.conditions}</p>
-    </>
-  );
-}
+  const [weatherData, setWeatherData] = useState({
+    temperature: 0,
+    conditions: ""
+  });
 
-export default App
+  useEffect(() => {
+    setWeatherData({ temperature: 25, conditions: "Sunny" });
+  }, []);
+
+  return (
+    <div>
+      <WeatherDisplay weatherData={weatherData} />
+    </div>
+  );
+};
+
+export default App;
